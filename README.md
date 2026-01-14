@@ -5,7 +5,9 @@
 An interactive, camera-based divination system where you draw I Ching (64 Hexagram) cards using your hand gestures.
 
 一个基于摄像头的互动占卜系统，你用**手势**来抽取《易经》64 卦卡牌。
-![Preview](./IChingCardDraw-Preview.gif)
+
+![Preview](./IChingCardDraw-Preview.GIF)
+
 **No buttons. No UI controls. Your hand is the oracle.**
 
 **没有按钮，没有点击。你的手，就是天机。**
