@@ -1,0 +1,383 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "SimSun", "宋体", serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    min-height: 100vh;
+    overflow: hidden;
+    color: #333;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 10px;
+}
+
+/* 摄像头区域 */
+.camera-section {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 200px;
+    height: 150px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    background: rgba(20, 20, 40, 0.9);
+}
+
+#video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1);
+    display: none;
+}
+
+#canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: scaleX(-1);
+}
+
+.gesture-hint {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+/* 卡牌区域 */
+.card-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* 罗盘容器 */
+.compass-container {
+    position: relative;
+    width: 500px;
+    height: 500px;
+}
+
+/* 罗盘中的小卡牌 */
+.mini-card {
+    position: absolute;
+    width: 60px;
+    height: 90px;
+    background: linear-gradient(145deg, #e8e8e8, #d0d0d0);
+    border-radius: 5px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    transform-origin: center center;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mini-card .mini-yinyang-svg {
+    width: 40px;
+    height: 40px;
+}
+
+/* 中心太极图 */
+.center-yinyang {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.center-yinyang svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* 洗牌时中心太极图反向旋转保持静止 */
+.compass-container.shuffling .center-yinyang {
+    animation: spinReverse 3s linear infinite;
+}
+
+@keyframes spinReverse {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(-360deg); }
+}
+
+/* 选中的卡牌容器 */
+.selected-card-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    perspective: 1000px;
+}
+
+/* 卡牌 */
+.card {
+    width: 280px;
+    height: 420px;
+    cursor: pointer;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease;
+}
+
+.card-inner.flipped {
+    transform: rotateY(180deg);
+}
+
+.card-back, .card-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* 卡牌背面 */
+.card-back {
+    background: linear-gradient(145deg, #d0d0d0, #a0a0a0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.corner-text {
+    position: absolute;
+    font-size: 20px;
+    color: rgba(100, 100, 100, 0.5);
+    font-weight: bold;
+}
+
+.top-left { top: 15px; left: 15px; }
+.top-right { top: 15px; right: 15px; }
+.bottom-left { bottom: 15px; left: 15px; }
+.bottom-right { bottom: 15px; right: 15px; }
+.rotated { transform: rotate(180deg); }
+
+/* 太极阴阳鱼 SVG */
+.yinyang-svg {
+    width: 120px;
+    height: 120px;
+}
+
+
+
+/* 卡牌正面 */
+.card-front {
+    background: #f8f8f5;
+    transform: rotateY(180deg);
+    padding: 12px 15px;
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    line-height: 1.4;
+    overflow: hidden;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    padding-bottom: 5px;
+}
+
+.card-number {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    font-family: "Times New Roman", serif;
+}
+
+.card-name {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+}
+
+.card-trigrams {
+    text-align: right;
+    font-size: 13px;
+    color: #555;
+    line-height: 1.5;
+}
+
+.card-body {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.card-left {
+    font-size: 11px;
+    color: #555;
+    line-height: 1.8;
+    min-width: 50px;
+}
+
+.gua-symbol {
+    display: flex !important;
+    flex-direction: column;
+    gap: 3px;
+    align-items: center;
+    padding: 5px 10px;
+    min-width: 80px;
+    min-height: 80px;
+}
+
+.yao-line {
+    display: flex !important;
+    gap: 0 !important;
+    justify-content: center;
+    align-items: center;
+    height: 8px;
+    width: 100%;
+}
+
+.yao-segment {
+    height: 6px !important;
+    border-radius: 1px;
+    display: block !important;
+}
+
+.yao-segment.yang {
+    width: 100px !important;
+    background: #d32f2f !important;
+}
+
+.yao-segment.yin {
+    width: 47px !important;
+    background: #000 !important;
+}
+
+.yao-segment.dong {
+    background: #c41e3a !important;
+}
+
+.yao-segment.gap {
+    width: 6px !important;
+    min-width: 6px !important;
+    max-width: 6px !important;
+    background: transparent !important;
+    flex-shrink: 0 !important;
+}
+
+.card-right {
+    font-size: 11px;
+    color: #555;
+    line-height: 1.8;
+    text-align: left;
+    min-width: 60px;
+}
+
+.card-explanation {
+    font-size: 13px;
+    color: #333;
+    margin-bottom: 8px;
+    text-align: justify;
+    padding: 5px 0;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.card-yaoci {
+    font-size: 11px;
+    color: #444;
+    line-height: 1.5;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.card-yaoci div {
+    margin-bottom: 2px;
+}
+
+.card-footer {
+    text-align: center;
+    font-size: 13px;
+    color: #c41e3a;
+    border-top: 1px solid #999;
+    padding-top: 8px;
+    margin-top: 8px;
+    font-weight: bold;
+    line-height: 1.8;
+    letter-spacing: 1px;
+}
+
+/* 状态栏 */
+.status-bar {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-size: 16px;
+    z-index: 100;
+}
+
+/* 洗牌动画 - 整体旋转 */
+@keyframes spinCompass {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* 只在洗牌时应用动画 */
+.compass-container.shuffling {
+    animation: spinCompass 3s linear infinite;
+}
+
+/* 抽牌动画 */
+@keyframes drawCard {
+    0% { 
+        transform: scale(0.2) translateY(100px);
+        opacity: 0;
+    }
+    100% { 
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+.card-drawn {
+    animation: drawCard 0.6s ease-out forwards;
+}

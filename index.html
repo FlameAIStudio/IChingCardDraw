@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>六十四卦抽牌</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 摄像头区域 -->
+        <div class="camera-section">
+            <video id="video" autoplay playsinline></video>
+            <canvas id="canvas"></canvas>
+            <div class="gesture-hint" id="gestureHint">请伸开手掌开始洗牌</div>
+        </div>
+        
+        <!-- 卡牌区域 -->
+        <div class="card-section">
+            <div class="compass-container" id="compassContainer">
+                <!-- 罗盘式卡牌将在这里生成 -->
+            </div>
+            
+            <!-- 抽出的卡牌 -->
+            <div class="selected-card-container" id="selectedCardContainer" style="display: none;">
+                <div class="card" id="selectedCard">
+                    <div class="card-inner" id="cardInner">
+                        <!-- 卡牌背面 -->
+                        <div class="card-back">
+                            <div class="corner-text top-left">元</div>
+                            <div class="corner-text top-right">亨</div>
+                            <svg class="yinyang-svg" viewBox="0 0 100 100">
+                                <!-- 外圆白色背景 -->
+                                <circle cx="50" cy="50" r="50" fill="#fff"/>
+                                <!-- 右半黑色 -->
+                                <path d="M50,0 A50,50 0 0,1 50,100 A25,25 0 0,1 50,50 A25,25 0 0,0 50,0" fill="#000"/>
+                                <!-- 白鱼眼（在上方黑色区域） -->
+                                <circle cx="50" cy="25" r="12" fill="#fff"/>
+                                <!-- 白鱼眼中的黑点 -->
+                                <circle cx="50" cy="25" r="5" fill="#000"/>
+                                <!-- 黑鱼眼（在下方白色区域） -->
+                                <circle cx="50" cy="75" r="12" fill="#000"/>
+                                <!-- 黑鱼眼中的白点 -->
+                                <circle cx="50" cy="75" r="5" fill="#fff"/>
+                                <!-- 外圈边框 -->
+                                <circle cx="50" cy="50" r="49" fill="none" stroke="#666" stroke-width="2"/>
+                            </svg>
+                            <div class="corner-text bottom-left rotated">利</div>
+                            <div class="corner-text bottom-right rotated">贞</div>
+                        </div>
+                        <!-- 卡牌正面 -->
+                        <div class="card-front" id="cardFront">
+                            <!-- 动态填充 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 状态提示 -->
+        <div class="status-bar">
+            <div class="status-text" id="statusText">正在初始化摄像头...</div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+    <script src="guaData.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
