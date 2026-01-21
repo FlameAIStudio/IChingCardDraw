@@ -1,4 +1,4 @@
-# 🧧HandGua — Gesture-Controlled I Ching Card Draw
+# 🧧64Gua — Gesture-Controlled I Ching Card Draw
 
 **手势交互 · 64 卦抽卡系统**
 
