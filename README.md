@@ -12,6 +12,9 @@ An interactive, camera-based divination system where you draw I Ching (64 Hexagr
 
 **没有按钮，没有点击。你的手，就是天机。**
 
+## 🔗 Live Demo | 在线体验
+### [👉 Click here to enter the Oracle / 点击进入占卜](https://flameaistudio.github.io/IChingCardDraw/)
+
 ---
 
 ## 🎴 What It Does | 它能做什么
@@ -113,23 +116,51 @@ Tarot, runes, oracle cards, astrology — this engine supports all of them.
 
 ## 👤 About the Author | 作者
 
-Created by **Flame** (FlameAIStudio)
+**Flame (FlameAIStudio)**
 
-**独立产品开发者 & 传统文化爱好者**
+🏷️ **Global Indie Dev | AI Explorer | Traditional Culture Enthusiast**  
+✍️ **Dev Logs | Growth Insights | AI Experiments | Daily Inspiration**
 
-I build web-based ritual systems, creative coding experiments, and open-source tools that explore how technology can reinterpret ancient symbolic systems.
+🏷️ **独立开发者｜AI探索者｜传统文化爱好者**  
+✍️ **开发实录｜增长复盘｜AI实验｜日常灵感**
 
-**我用技术去重构仪式、符号系统和传统文化。**
+- [![GitHub](https://img.shields.io/badge/GitHub-FlameAIStudio-181717?logo=github&logoColor=white)](https://github.com/FlameAIStudio)
+- [![Website](https://img.shields.io/badge/Website-flameai.net-4285F4?logo=google-chrome&logoColor=white)](https://www.flameai.net/)
+- [![Xiaohongshu](https://img.shields.io/badge/小红书-福雷姆_Flame-FF2442?logo=xiaohongshu&logoColor=white)](https://xhslink.com/m/4hpU0mLDqkm)
+- [![Douyin](https://img.shields.io/badge/抖音-flameai-000000?logo=tiktok&logoColor=white)](https://v.douyin.com/wdahg7Imp6M/)
 
-- **GitHub:** https://github.com/FlameAIStudio
-- **Website:** https://www.flameai.net
+<table>
+  <tr>
+    <td align="center">
+      <img src="./assets/wechat_qr.jpg" width="200" />
+      <br />
+      公众号
+    </td>
+    <td align="center">
+      <img src="./assets/douyin_qr.jpg" width="200" />
+      <br />
+      抖音
+    </td>
+    <td align="center">
+      <img src="./assets/xiaohongshu_qr.jpg" width="200" />
+      <br />
+      小红书
+    </td>
+  </tr>
+</table>
 
 ---
 
-## 📜 License | 许可
+## 📜 License & Usage | 开源协议与初心
 
 **MIT License**
 
-Free to use, modify, remix, and redistribute.
+**Note from the Author:**
+I hope this source code serves as a tool for **education, dissemination, and inspiration**, helping more people explore traditional culture.
+**Please do not sell this source code for profit.**
+Let knowledge flow freely.
 
-**可自由使用、修改、二次创作、再分发。**
+**作者寄语：**
+开源这份代码，是希望它能真正用来 **传播、教学**，帮助更多人以现代化的视角接触传统文化。
+**请勿将源代码直接进行商业售卖。**
+愿这份“开源精神”与“传统智慧”一样，因分享而生生不息。
